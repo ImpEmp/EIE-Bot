@@ -100,7 +100,9 @@ public static String filterText(String input) throws FileNotFoundException {
 		y = countWord(ss);
 		if(y>0){
 		System.out.println(ss +" " + y);
-		bad = true;
+		  return "This message was blocked because a bad word was found.";
+
+		
 		}
 	  }
 	
