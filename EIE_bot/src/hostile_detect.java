@@ -93,21 +93,22 @@ return wordCntr;
 
 public static String filterText(String input) throws FileNotFoundException {
 	int y = 0;
+	int zz= 0;
 	Boolean bad = false;
 	input = leetspeekremover(input);
 	String[] words = input.split("\\W+");
 	for ( String ss : words) {
 		y = countWord(ss);
 		if(y>0){
-		System.out.println(ss +" " + y);
-		  return "This message was blocked because a bad word was found.";
-
+		System.out.println(ss);
+		zz++;
+		bad = true;
 		
 		}
 	  }
 	
     if(bad == true)
-        return "This message was blocked because a bad word was found.";
+        return "This message was blocked because " +zz+ " bad words was found.";
     
     return " ";
 }
