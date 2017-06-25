@@ -64,11 +64,6 @@ public static int countWord(String wordwew) throws FileNotFoundException {
                 for(String w : lineWords){
                     //first see if the word is as least as long as the testWord
                     if(w.length() >= tLen){
-                        /*
-                        1) grab the specific word, minus whitespace
-                        2) check to see whether the first part of it having same length
-                            as testWord is equivalent to testWord, ignoring case
-                        */
                         String word = w.substring(0,tLen).trim();                                                        
                         if(word.equalsIgnoreCase(testWord)){                                
                             wordCntr++;
