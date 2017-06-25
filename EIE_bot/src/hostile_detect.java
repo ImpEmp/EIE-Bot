@@ -5,11 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.carrot2.shaded.guava.common.collect.HashMultiset;
-import org.carrot2.shaded.guava.common.collect.Multiset;
 
 public class hostile_detect {
 public Boolean twitterban(String text){
@@ -43,7 +38,7 @@ return input;
 
 public static int countWord(String wordwew) throws FileNotFoundException {
     String path = ""; //ADD YOUR PATH HERE
-    String fileName = "bad.txt";
+    String fileName = "badwords_en_US.txt";
     String testWord = wordwew; //CHANGE THIS IF YOU WANT
     int tLen = testWord.length();
     int wordCntr = 0;
