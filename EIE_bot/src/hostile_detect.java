@@ -85,7 +85,8 @@ public static String filterText(String input) throws FileNotFoundException {
 	for ( String ss : words) {
 		y = countWord(ss);
 		if(y>0){
-		System.out.print(ss + y);
+		System.out.println(ss +" " + y);
+		bad = true;
 		}
 	  }
 	

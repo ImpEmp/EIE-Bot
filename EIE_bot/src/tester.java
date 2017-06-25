@@ -8,7 +8,7 @@ public class tester {
 		// TODO Auto-generated method stub
 		hostile_detect d = new hostile_detect ();
 		
-		System.out.print(d.countWord("ass"));
+		System.out.print(d.filterText("ass"));
 	}
 
 }
