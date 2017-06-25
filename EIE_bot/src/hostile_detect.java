@@ -85,16 +85,17 @@ public static ArrayList<String> badWordsFound(String input) {
         // from each letter, keep going to find bad words until either the end of the sentence is reached, or the max word length is reached. 
         for(int offset = 1; offset < (input.length()+1 - start) && offset < largestWordLength; offset++)  {
             String wordToCheck = input.substring(start, start + offset);
-         if(words.containsKey(wordToCheck)) {
+         if(badWords.contains(wordToCheck)) {
                 // for example, if you want to say the word bass, that should be possible.
-                String[] ignoreCheck = words.get(wordToCheck);
-                boolean ignore = false;
-                for(int s = 0; s < ignoreCheck.length; s++ ) {
-                    if(input.contains(ignoreCheck[s])) {
-                        ignore = true;
-                        break;
-                    }
-                }
+//                String[] ignoreCheck = words.get(wordToCheck);
+               boolean ignore = false;
+//                for(int s = 0; s < ignoreCheck.length; s++ ) {
+//                    if(input.contains(ignoreCheck[s])) {
+//                        ignore = true;
+//                        break;
+//                    }
+//                }
+        	 
                 if(!ignore) {
                     badWords.add(wordToCheck);
                 }
@@ -104,7 +105,7 @@ public static ArrayList<String> badWordsFound(String input) {
 
 
     for(String s: badWords) {
-        Server.getSlackManager().queue(s + " qualified as a bad word in a username");
+        System.out.print(s + " qualified as a bad word in a username");
     }
     return badWords;
 
