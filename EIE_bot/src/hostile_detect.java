@@ -12,10 +12,24 @@ public Boolean twitterban(String text){
 	return null;
 	
 }
-public Boolean is_tagged(String text){
-	
-	return null;
-	
+public int is_subject(String text){
+
+	//1 faceboot
+	//2 twitter
+    //3 is mentioned but not tagged
+	String[] words = text.split("\\W+");
+	for ( String ss : words) {
+		if(ss =="aEnoughisEnough101") {
+			return 1;
+			}
+		if(ss =="aeietweets") {
+			return 2;
+			}
+		if(ss =="EIE") {
+		return 3;
+		}
+	  }
+	return 0;
 }
 
 public static String leetspeekremover(String input) {
