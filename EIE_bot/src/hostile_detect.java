@@ -7,11 +7,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 public class hostile_detect {
-public Boolean twitterban(String text){
-	
-	return null;
-	
-}
+
 public int is_subject(String text){
 
 	//1 faceboot
