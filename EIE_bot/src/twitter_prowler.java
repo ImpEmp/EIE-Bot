@@ -1,30 +1,46 @@
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-import javax.net.ssl.SSLEngineResult.Status;
-
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.BoxLayout; // added code
+import java.awt.Component; // added code
 
 public class twitter_prowler {
-	public static void main(String[] args) throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		
-		hostile_detect d = new hostile_detect ();
-	    Twitter twitter = TwitterFactory.getSingleton();
-	    twitter4j.Status status = null;
-		try {
-			status = twitter.updateStatus("latestStatus");
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    System.out.println("Successfully updated the status to [" + status.getText() + "].");
-		System.out.print("enter in the test>>>");
-		Scanner scanner = new Scanner(System.in);
-		String test = scanner.nextLine();
-		System.out.print(d.filterText(test));
-	}
 
+public static void main(String[] args) {
+
+    JFrame frame = new JFrame("Twitter_Moniter");
+    frame.setVisible(true);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(500, 500);
+    frame.setLocation(430, 100);
+
+    JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // added code
+
+    frame.add(panel);
+
+    JLabel lbl = new JLabel("Select one of the possible choices and click OK");
+    lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //lbl.setVisible(true); // Not needed
+
+    panel.add(lbl);
+
+    String[] choices = { "Prowl", "Post", "Search" };
+
+    final JComboBox<String> cb = new JComboBox<String>(choices);
+
+    cb.setMaximumSize(cb.getPreferredSize()); // added code
+    cb.setAlignmentX(Component.CENTER_ALIGNMENT);// added code
+    //cb.setVisible(true); // Not needed
+    panel.add(cb);
+
+    JButton btn = new JButton("OK");
+    btn.setAlignmentX(Component.CENTER_ALIGNMENT); // added code
+    panel.add(btn);
+
+    frame.setVisible(true); // added code
+
+    }
 }
