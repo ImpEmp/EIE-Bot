@@ -104,9 +104,9 @@ public static String filterText(String input) throws FileNotFoundException {
 	  }
 	
     if(bad == true)
-        return "This message was blocked because " +zz+ " bad words was found.";
+        return "blocked";
     
-    return " ";
+    return "good";
 }
 public Boolean facebookban(String text){
 	return null;

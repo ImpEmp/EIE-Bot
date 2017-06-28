@@ -1,4 +1,6 @@
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
@@ -13,7 +15,7 @@ import twitter4j.User;
 
 public class Main_twitter {
 
-    public static void tweet(String tweete)
+    public static void tweet(String tweete) throws FileNotFoundException
     {
         try
         {
@@ -23,9 +25,20 @@ public class Main_twitter {
 
             //twitter4j.auth.AccessToken accessToken = new twitter4j.auth.AccessToken("880054483128111104-bnooexN77uhe0vMo2x6TOhHZ3vopCQ4"," 2DA74krdn7gxlzVbhtKxpIDYRYlVJDHf9pcFMmoO3aD1j");
             //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+           
+           	 
+      	   
+   			String out = hostile_detect.filterText(tweete);
+   			
+   			if (out == "good"){
             Status status = twitter.updateStatus(tweete);
             System.out.println("Successfully updated the status to [" + status.getText() + "].");
+   			}
+   			if (out == "blocked"){
+   	            
+   	            System.out.println("[BLOCKED]");
+   	   			}
+   			
             System.exit(0);
         } catch (TwitterException ex)
         {
@@ -44,4 +57,11 @@ public class Main_twitter {
 		Twitter twitter = new TwitterFactory().getInstance();
 
     }
+    public static void prowl(String searche)
+    {
+        // The factory instance is re-useable and thread safe.
+		Twitter twitter = new TwitterFactory().getInstance();
+
+    }
+ 
 }
