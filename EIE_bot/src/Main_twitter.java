@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import twitter4j.Query;
+import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -51,16 +54,31 @@ public class Main_twitter {
 		Twitter twitter = new TwitterFactory().getInstance();
 
     }
-    public static void search(String searche)
+    public static void search(String searche) throws TwitterException
     {
         // The factory instance is re-useable and thread safe.
 		Twitter twitter = new TwitterFactory().getInstance();
+		  Query query = new Query(searche);
+		    QueryResult result = twitter.search(query);
+		    for (Status status : result.getTweets()) {
+		        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+		    }
 
     }
-    public static void prowl(String searche)
+    public static void prowl(String searche) throws TwitterException, FileNotFoundException
     {
         // The factory instance is re-useable and thread safe.
-		Twitter twitter = new TwitterFactory().getInstance();
+    	Twitter twitter = new TwitterFactory().getInstance();
+		  Query query = new Query(searche);
+		  hostile_detect tempor = new hostile_detect();
+		    QueryResult result = twitter.search(query);
+		    for (Status status : result.getTweets()) {
+		    	String temp = status.getText();
+		        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+		        if(tempor.generalban(temp)){
+		        	twitter.createBlock(status.getUser().getScreenName());
+		        }
+		    }
 
     }
  

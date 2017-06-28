@@ -3,6 +3,8 @@ import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
+
+import twitter4j.TwitterException;
  
 // An AWT program inherits from the top-level container java.awt.Frame
 public class twitter_prowler extends Frame
@@ -71,8 +73,13 @@ implements ActionListener, WindowListener {
       btnCountDown.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent evt) {
-           
-            tfCount.setText(count + "");
+        	 count=tfCount.getText();
+        	 try {
+				Main_twitter.search(count);
+			} catch (TwitterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
          }
       });
  
@@ -81,7 +88,18 @@ implements ActionListener, WindowListener {
       btnprowl.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent evt) {
-            
+          	 count=tfCount.getText();
+      	      Main_twitter tweeter = new Main_twitter();
+      	      try {
+   			Main_twitter.prowl(count);
+   			
+   		} catch (FileNotFoundException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
          }
          
       });

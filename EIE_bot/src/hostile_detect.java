@@ -108,11 +108,53 @@ public static String filterText(String input) throws FileNotFoundException {
     
     return "good";
 }
+public static String filterTextext(String input) throws FileNotFoundException {
+	int y = 0;
+	int zz= 0;
+	Boolean bad = false;
+	input = leetspeekremover(input);
+	String[] words = input.split("\\W+");
+	for ( String ss : words) {
+		y = countWord(ss);
+		if(y>0){
+			 if(bad == true)
+			        return "blocked for use of "+ ss;
+		System.out.println(ss);
+		zz++;
+		bad = true;
+		
+		}
+	  }
+	
+   
+    
+    return "good";
+}
 public Boolean facebookban(String text){
 	return null;
 	
 }
-public Boolean generalban(String text){
-	return null;
+public Boolean generalban(String input) throws FileNotFoundException{
+	int y = 0;
+	int zz= 0;
+	Boolean bad = false;
+	input = leetspeekremover(input);
+	String[] words = input.split("\\W+");
+	for ( String ss : words) {
+		y = countWord(ss);
+		if(y>0){
+			 if(bad == true)
+			        return true;
+		System.out.println(ss);
+		zz++;
+		bad = true;
+		
+		}
+	  }
+	
+   
+    
+    return false;
 }
 }
+
