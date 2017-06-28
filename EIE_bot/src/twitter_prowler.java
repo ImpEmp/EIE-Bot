@@ -12,7 +12,7 @@ implements ActionListener, WindowListener {
    private Label lblCount;    // Declare a Label component 
    private TextField tfCount; // Declare a TextField component 
    private Button btnCount;   // Declare a Button component
-   private String count = "null";     // Counter's value
+   private String count = "nuller";     // Counter's value
    private String out = "null";
    // Constructor to setup GUI components and event handlers
    public twitter_prowler () {
@@ -32,7 +32,7 @@ implements ActionListener, WindowListener {
       btnCount = new Button("post");   // construct the Button component
       add(btnCount);                    // "super" Frame container adds Button component
       TextField tfout = new TextField(out, 10); // construct the TextField component
-      tfout.setEditable(true);  
+      tfout.setEditable(false);  
       add(tfout);
       btnCount.addActionListener(new ActionListener(){
     	  @Override

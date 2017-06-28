@@ -62,7 +62,7 @@ public static int countWord(String wordwew) throws FileNotFoundException {
         //Read File Line By Line
         while((strLine = br.readLine()) != null){                
             //check to see whether testWord occurs at least once in the line of text
-            check = strLine.toLowerCase().contains(testWord.toLowerCase());
+            check = strLine.toLowerCase().equals(testWord.toLowerCase());
             if(check){                    
                 //get the line, and parse its words into a String array
                 String[] lineWords = strLine.split("\\s+");                    
@@ -142,18 +142,10 @@ public Boolean generalban(String input) throws FileNotFoundException{
 	String[] words = input.split("\\W+");
 	for ( String ss : words) {
 		y = countWord(ss);
-		if(y>0){
-			 if(bad == true)
-			        return true;
-		System.out.println(ss);
-		zz++;
-		bad = true;
-		
+		if(y>0){ return true;
 		}
 	  }
-	
-   
-    
+
     return false;
 }
 }

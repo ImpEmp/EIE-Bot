@@ -69,14 +69,16 @@ public class Main_twitter {
     {
         // The factory instance is re-useable and thread safe.
     	Twitter twitter = new TwitterFactory().getInstance();
+    	String temp = null;
 		  Query query = new Query(searche);
 		  hostile_detect tempor = new hostile_detect();
 		    QueryResult result = twitter.search(query);
 		    for (Status status : result.getTweets()) {
-		    	String temp = status.getText();
+		    	temp = status.getText();
 		        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-		        if(tempor.generalban(temp)){
-		        	twitter.createBlock(status.getUser().getScreenName());
+		        String why = status.getUser().getScreenName();
+		        if(tempor.generalban(temp)==true&&!(status.getUser().getScreenName() =="Shodan_Freeman")){
+		        	twitter.createBlock(why);
 		        }
 		    }
 
