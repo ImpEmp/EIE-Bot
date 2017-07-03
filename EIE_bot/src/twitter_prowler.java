@@ -1,8 +1,10 @@
 import java.awt.*;        // Using AWT container and component classes
 import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import twitter4j.TwitterException;
  
@@ -39,6 +41,11 @@ implements ActionListener, WindowListener {
     	  public void actionPerformed(ActionEvent evt) 
     	   {
     		  count=tfCount.getText();
+    		  int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to Tweet?", "Tweet?",  JOptionPane.YES_NO_OPTION);
+    		  if (reply == JOptionPane.YES_OPTION)
+    		  {
+    		 
+    		  
     	      Main_twitter tweeter = new Main_twitter();
     	      try {
 				Main_twitter.tweet(count);
@@ -46,6 +53,7 @@ implements ActionListener, WindowListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+    		  }
     	   }
     		  
 });
@@ -97,6 +105,9 @@ implements ActionListener, WindowListener {
    			// TODO Auto-generated catch block
    			e.printStackTrace();
    		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

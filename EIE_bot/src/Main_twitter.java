@@ -1,6 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
@@ -17,7 +20,23 @@ import twitter4j.User;
 
 
 public class Main_twitter {
-
+	//private static final String FILENAME = "blocking.txt";
+	public static void ptfile(String text) throws IOException{
+	    
+	        BufferedWriter output = null;
+	        try {
+	            File file = new File("output.txt");
+	            output = new BufferedWriter(new FileWriter(file));
+	            output.write(text);
+	        } catch ( IOException e ) {
+	            e.printStackTrace();
+	        } finally {
+	          if ( output != null ) {
+	            output.close();
+	          }
+	        }
+	}
+	
     public static void tweet(String tweete) throws FileNotFoundException
     {
         try
@@ -65,7 +84,7 @@ public class Main_twitter {
 		    }
 
     }
-    public static void prowl(String searche) throws TwitterException, FileNotFoundException
+    public static void prowl(String searche) throws TwitterException, IOException
     {
         // The factory instance is re-useable and thread safe.
     	Twitter twitter = new TwitterFactory().getInstance();
@@ -76,6 +95,7 @@ public class Main_twitter {
 		    for (Status status : result.getTweets()) {
 		    	temp = status.getText();
 		        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+		        ptfile("@" + status.getUser().getScreenName() + ":" + status.getText());
 		        String why = status.getUser().getScreenName();
 		        if(tempor.generalban(temp)==true&&!(status.getUser().getScreenName() =="Shodan_Freeman")){
 		        	twitter.createBlock(why);
