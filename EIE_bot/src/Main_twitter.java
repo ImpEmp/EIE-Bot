@@ -1,3 +1,4 @@
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,6 +85,95 @@ public class Main_twitter {
 		        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
 		    }
 
+    }
+
+    public static void bettersearch(String term)
+    {
+    	Twitter twitter = new TwitterFactory().getInstance();
+    ArrayList<Status> tweets = new ArrayList<Status>();
+    int wantedTweets = 200;
+    long lastSearchID = Long.MAX_VALUE;
+    int remainingTweets = wantedTweets;
+    Query query = new Query(term);
+     try
+    { 
+
+      while(remainingTweets > 0)
+      {
+        remainingTweets = wantedTweets - tweets.size();
+        if(remainingTweets > 100)
+        {
+          query.count(100);
+        }
+        else
+        {
+         query.count(remainingTweets); 
+        }
+        QueryResult result = twitter.search(query);
+        tweets.addAll(result.getTweets());
+        Status s = tweets.get(tweets.size()-1);
+        long firstQueryID = s.getId();
+        query.setMaxId(firstQueryID);
+        remainingTweets = wantedTweets - tweets.size();
+      }
+
+      System.out.println("tweets.size() "+tweets.size() );
+    }
+    catch(TwitterException te)
+    {
+      System.out.println("Failed to search tweets: " + te.getMessage());
+      System.exit(-1);
+    }
+    }
+    public static void betterprowl(String term,int number) throws TwitterException, IOException{
+    	Twitter twitter = new TwitterFactory().getInstance();
+        ArrayList<Status> tweets = new ArrayList<Status>();
+        int wantedTweets = 200;
+        long lastSearchID = Long.MAX_VALUE;
+        int remainingTweets = wantedTweets;
+        Query query = new Query(term);
+         try
+        { 
+             // The factory instance is re-useable and thread safe.
+    
+     		  hostile_detect tempor = new hostile_detect();
+     		  
+
+          while(remainingTweets > 0)
+          {
+            remainingTweets = wantedTweets - tweets.size();
+            if(remainingTweets > 100)
+            {
+              query.count(100);
+            }
+            else
+            {
+             query.count(remainingTweets); 
+            }
+            QueryResult result = twitter.search(query);
+            tweets.addAll(result.getTweets());
+            Status s = tweets.get(tweets.size()-1);
+            long firstQueryID = s.getId();
+            query.setMaxId(firstQueryID);
+            for (Status status : result.getTweets()) {
+ 		    	String temp = status.getText();
+ 		        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+ 		        ptfile("@" + status.getUser().getScreenName() + ":" + status.getText());
+ 		        String why = status.getUser().getScreenName();
+ 		        if(tempor.generalban(temp)==true&&!(status.getUser().getScreenName() =="Shodan_Freeman")){
+ 		        	twitter.createBlock(why);
+ 		        }
+ 		    }
+            remainingTweets = wantedTweets - tweets.size();
+          }
+
+          System.out.println("tweets.size() "+tweets.size() );
+        }
+        catch(TwitterException te)
+        {
+          System.out.println("Failed to search tweets: " + te.getMessage());
+          System.exit(-1);
+        }
     }
     public static void prowl(String searche) throws TwitterException, IOException
     {

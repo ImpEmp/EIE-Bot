@@ -44,7 +44,6 @@ implements ActionListener, WindowListener {
     		  int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to Tweet?", "Tweet?",  JOptionPane.YES_NO_OPTION);
     		  if (reply == JOptionPane.YES_OPTION)
     		  {
-    		 
     		  
     	      Main_twitter tweeter = new Main_twitter();
     	      try {
@@ -99,7 +98,7 @@ implements ActionListener, WindowListener {
           	 count=tfCount.getText();
       	      Main_twitter tweeter = new Main_twitter();
       	      try {
-   			Main_twitter.prowl(count);
+   			Main_twitter.betterprowl(count,300);
    			
    		} catch (FileNotFoundException e) {
    			// TODO Auto-generated catch block
@@ -131,7 +130,6 @@ implements ActionListener, WindowListener {
          }
    });
    }
- 
    // The entry main() method
    public static void main(String[] args) {
       // Invoke the constructor to setup the GUI, by allocating an instance
