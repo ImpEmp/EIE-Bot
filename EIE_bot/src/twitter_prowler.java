@@ -98,7 +98,7 @@ implements ActionListener, WindowListener {
           	 count=tfCount.getText();
       	      Main_twitter tweeter = new Main_twitter();
       	      try {
-   			Main_twitter.betterprowl(count,1000);
+   			Main_twitter.betterprowl(count,500);
    			
    		} catch (FileNotFoundException e) {
    			// TODO Auto-generated catch block

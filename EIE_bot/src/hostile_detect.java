@@ -113,8 +113,8 @@ public static String filterText(String input) throws FileNotFoundException {
 }
 public static int hostile_detecor(String ss){
 	//https://tone-analyzer-demo.mybluemix.net/
-	ToneAnalyzer service = new ToneAnalyzer("{version}");
-	service.setUsernameAndPassword("{username}", "{password}");
+	ToneAnalyzer service = new ToneAnalyzer("2016-05-19");
+	service.setUsernameAndPassword("14f012a4-89f6-440f-ae4b-f1a9c039ec41", "kDFVlplsmKVG");
 	return 1;
 	
 }
