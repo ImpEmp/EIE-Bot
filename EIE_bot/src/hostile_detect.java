@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
+
 public class hostile_detect {
 
 public int is_subject(String text){
@@ -95,6 +97,7 @@ public static String filterText(String input) throws FileNotFoundException {
 	String[] words = input.split("\\W+");
 	for ( String ss : words) {
 		y = countWord(ss);
+		
 		if(y>0){
 		System.out.println(ss);
 		zz++;
@@ -108,6 +111,14 @@ public static String filterText(String input) throws FileNotFoundException {
     
     return "good";
 }
+public static int hostile_detecor(String ss){
+	//https://tone-analyzer-demo.mybluemix.net/
+	ToneAnalyzer service = new ToneAnalyzer("{version}");
+	service.setUsernameAndPassword("{username}", "{password}");
+	return 1;
+	
+}
+
 public static String filterTextext(String input) throws FileNotFoundException {
 	int y = 0;
 	int zz= 0;
@@ -116,6 +127,7 @@ public static String filterTextext(String input) throws FileNotFoundException {
 	String[] words = input.split("\\W+");
 	for ( String ss : words) {
 		y = countWord(ss);
+		y = hostile_detecor(ss);
 		if(y>0){
 			 if(bad == true)
 			        return "blocked for use of "+ ss;
@@ -135,18 +147,12 @@ public Boolean facebookban(String text){
 	
 }
 public Boolean generalban(String input) throws FileNotFoundException{
-	int y = 0;
-	int zz= 0;
-	Boolean bad = false;
-	input = leetspeekremover(input);
-	String[] words = input.split("\\W+");
-	for ( String ss : words) {
-		y = countWord(ss);
-		if(y>0){ return true;
-		}
-	  }
-
+	if(filterText(input)=="good"){
     return false;
+	}
+	else{
+	return true;
+	}
 }
 }
 
